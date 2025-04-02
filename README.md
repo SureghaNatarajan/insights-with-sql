@@ -1,1 +1,1 @@
-Tried solving Set of SQL Questions from chinook DB
+Hi, I’m SureghaNatarajan, a Data Engineer with 7+ years of experience in building scalable ETL pipelines, optimizing databases, and leveraging data for business insights. I specialize in SQL, Python. Here, you'll find my projects and case studies showcasing my expertise.
