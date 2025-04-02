@@ -21,7 +21,7 @@ GROUP BY AR.ARTISTID
 ORDER BY ALBUMCOUNT DESC
 LIMIT 1
 
-/* TFQ sln
+
 with temp as
     (select alb.artistid
     , count(1) as no_of_albums
@@ -46,7 +46,7 @@ JOIN TRACK T ON T.TRACKID = IL.TRACKID
 JOIN GENRE G ON G.GENREID = T.GENREID
 WHERE G.name in('Jazz','Rock','Pop')
 
-/*TFQ sln
+
 select  (c.firstname||' '||c.lastname) as customer_name
 , c.email, c.country, g.name as genre
 from InvoiceLine il
@@ -68,7 +68,7 @@ inner join customer C on C.supportrepid = E.employeeid
 join cte ct on ct.supportrepid = E.employeeid
 --where E.employeeid = 3
 
-/* TFQ sln
+
 select employee_name, title as designation
 from (
     select (e.firstname||' '||e.lastname) as employee_name, e.title
@@ -114,7 +114,7 @@ group by billingcountry
 order by 2 desc
 limit 1
 
---TFQ Sln
+
 select country
 from (
     select billingcountry as country, count(1) as no_of_invoice
@@ -148,7 +148,7 @@ GROUP BY C.CUSTOMERID
 ORDER BY TOTAL DESC
 LIMIT 1
 
---TFQ SLN
+
 select (c.firstname||' '||c.lastname) as customer_name
 from (
     select customerid, sum(total) total_purchase
@@ -177,7 +177,7 @@ where G.name='Rock'
 group by I.billingcity
 order by 2 desc
 
---TFQ Sln
+
 
 select I.billingcity, count(1)
 from Track T
@@ -234,7 +234,7 @@ WITH  popular_genre AS
 select Artist_name,ALBUMCOUNT from popular_artist
 where 
 
---TFQ Sln
+
 with most_popular_genre as
             (select name as genre
             from (select g.name
@@ -279,7 +279,7 @@ SELECT * FROM popular_genre
 where tracks_sold = (SELECT MAX(tracks_sold) FROM popular_genre)
 OR tracks_sold = (SELECT MIN(tracks_sold) FROM popular_genre)
 				
---TFQ SLN
+
 
 with temp as
         (select distinct g.name
@@ -312,7 +312,7 @@ GROUP BY Al.AlbumId,Ar.name
 HAVING COUNT (*) <5
 order by Al.title
 
---TFQ sln
+
 select al.title as album_name, art.name as artist_name, count(1) as no_of_tracks
 from album al
 join track t on t.albumid = al.albumid
@@ -335,7 +335,7 @@ join Artist Ar on Al.Artistid = Ar.Artistid
 join genre g on T.genreid = g.genreid
 WHERE NOT EXISTS (SELECT 1 FROM  Invoiceline Il WHERE T.Trackid = Il.Trackid)
 
---TFQ sln
+
 select t.name as track_name, al.title as album_title, art.name as artist_name, g.name as genre
 from Track t
 join album al on al.albumid=t.albumid
@@ -362,7 +362,7 @@ where not exists (select 1
 	join cte c on c.Artistid = Ar.Artistid
 	ORDER BY ar.Name, g.Name
 
---TFQ sln
+
 with temp as
         (select distinct art.name as artist_name, g.name as genre
         from Track t
@@ -414,7 +414,7 @@ group by Ar.artistid,Ar.name
 limit 1
 
 
---TFQ sln
+
 select name from (
     select ar.name,count(1)
     ,rank() over(order by count(1) desc) as rnk
@@ -436,7 +436,7 @@ where rnk = 1;
 	 order by Ar.artistid,Al.albumid
 	 having COUNT(*) > 1
 	 
---TFQ sln
+
 select albumid, count(1) 
 from Album 
 group by albumid 
@@ -450,7 +450,7 @@ join Customer c on inv.customerid = c.customerid
 where not exists (select customerid from Customer
 				 where c.customerid = inv.customerid)
 
---TFQ sln
+
 select * from Invoice I
 where not exists (select 1 from customer c 
                 where c.customerid = I.customerid);
